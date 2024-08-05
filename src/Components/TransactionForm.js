@@ -1,13 +1,7 @@
 import React from 'react';
 import TransactionTable from './TransactionTable';
 
-function TransactionForm({ filteredTransactions }) {
-  const visibleTransactionTable = filteredTransactions.map((transaction) => {
-    return (
-      <TransactionTable key={transaction.id} {...transaction} />
-    );
-  });
-
+function TransactionForm({ filteredTransactions, onDeleteTransaction }) {
   return (
     <table className="ui celled striped padded table">
       <thead>
@@ -24,10 +18,19 @@ function TransactionForm({ filteredTransactions }) {
           <th>
             <h3 className="ui center aligned header">Amount</h3>
           </th>
+          <th>
+            <h3 className="ui center aligned header">Actions</h3>
+          </th>
         </tr>
       </thead>
       <tbody>
-        {visibleTransactionTable}
+        {filteredTransactions.map(transaction => (
+          <TransactionTable 
+            key={transaction.id} 
+            {...transaction} 
+            onDelete={() => onDeleteTransaction(transaction.id)}
+          />
+        ))}
       </tbody>
     </table>
   );
