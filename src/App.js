@@ -8,7 +8,7 @@ function App() {
       <div className="ui segment violet inverted">
         <h2>The Bank of Flatiron</h2>
       </div>
-           <Account />
+       <Account />
 
   
 
